@@ -40,15 +40,6 @@ export class PhotoboothPage {
   private baseURI               : string  = "http://cdm.tag.by/mobileApp/";
 
 
-  /**
-   * @name hideContent
-   * @type {Boolean}
-   * @public
-   * @description     Flag to hide the content upon successful completion of remote operation
-   */
-  public hideContent               : boolean = false;
-
-
   constructor(public navCtrl: NavController,
               public http   : HttpClient,
               private barcodeScanner: BarcodeScanner,
@@ -104,31 +95,6 @@ export class PhotoboothPage {
 
 
 
-  /**
-   * Allow navigation to the AddUserPage for creating a new entry
-   *
-   * @public
-   * @method addEntry
-   * @return {None}
-   */
-  addEntry() : void
-  {
-    this.navCtrl.push('AddUserPage');
-  }
-
-
-  /**
-   * Allow navigation to the SearchPage
-   *
-   * @public
-   * @method goSearch
-   * @return {None}
-   */
-  goSearch() : void
-  {
-    this.navCtrl.push('SearchPage');
-  }
-
 
   /**
    * Allow navigation to the PhotoboothPage
@@ -137,7 +103,7 @@ export class PhotoboothPage {
    * @method goPhotobooth
    * @return {None}
    */
-  goPhotobooth() : void
+  takePhoto() : void
   {
     this.navCtrl.push('PhotoboothPage');
   }

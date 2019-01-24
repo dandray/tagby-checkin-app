@@ -1,0 +1,19 @@
+npm install ngx-qrcode2 --save
+
+npm install ionic cordova plugin add phonegap-plugin-barcodescanner
+npm install --save @ionic-native/barcode-scanner
+
+ionic cordova plugin add cordova-plugin-camera
+npm install @ionic-native/camera
+
+//Ajouter icon et splashscreen 
+1. Modifier resources/icon.png avec notre icone
+2. Modifier resources/splash.png avec notre splashScreen
+3. > ionic cordova resources
+
+Désinstaller un plugin 
+cordova plugin remove <PLUGIN_NAME>
+
+APKs : 
+C:\Users\drayd\Checkin-CDM\platforms\android\app\build\outputs\apk\debug
+
