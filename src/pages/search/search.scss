@@ -3,4 +3,10 @@ page-search {
     margin-top: 20px;
     background-color: #E15E4A;
   }
+  .button:active{
+    background-color: rgb(224, 68, 44);
+  }
+  .button:after{
+    background-color: rgb(224, 68, 44);
+  }
 }
