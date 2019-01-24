@@ -5,10 +5,12 @@ import {IonicApp, IonicErrorHandler, IonicModule} from 'ionic-angular';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 import { Printer, PrintOptions } from '@ionic-native/printer';
-import { File } from '@ionic-native/file';
 
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
+import { Camera } from '@ionic-native/camera';
+import { FileTransfer } from '@ionic-native/file-transfer';
+import { File } from '@ionic-native/file';
 import {BarcodeScanner} from "@ionic-native/barcode-scanner";
 import {NgxQRCodeModule} from "ngx-qrcode2";
 import {HomePageModule} from "../pages/home/home.module";
@@ -33,7 +35,7 @@ import {HomePageModule} from "../pages/home/home.module";
   ],
   providers: [
     StatusBar,
-    SplashScreen,
+    SplashScreen, Camera, FileTransfer,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     BarcodeScanner,
     Printer,

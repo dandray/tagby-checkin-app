@@ -1,7 +1,11 @@
 import { Component } from '@angular/core';
-import {AlertController, IonicPage, NavController, Platform, ToastController} from 'ionic-angular';
+import {AlertController, IonicPage, NavController, Platform, ToastController, LoadingController} from 'ionic-angular';
+import { Camera, CameraOptions } from '@ionic-native/camera';
+import { FileTransfer, FileUploadOptions, FileTransferObject   } from '@ionic-native/file-transfer';
+import { File } from '@ionic-native/file';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {BarcodeScanner} from "@ionic-native/barcode-scanner";
+
 
 
 @IonicPage()
@@ -10,20 +14,13 @@ import {BarcodeScanner} from "@ionic-native/barcode-scanner";
   templateUrl: 'photobooth.html'
 })
 export class PhotoboothPage {
+  
+  public myPhoto: any;
 
-  /**
-   * @name items
-   * @type {Array}
-   * @public
-   * @description     Used to store returned PHP data
-   */
   public items : Array<any> = [];
 
   public fields : Array<any> = [];
 
-  /**
-   * Données du QR Code
-  */
   public scannedCode = null;
 
 
@@ -41,9 +38,12 @@ export class PhotoboothPage {
 
 
   constructor(public navCtrl: NavController,
+              private camera: Camera,
+              private transfer: FileTransfer, 
+              private file: File, 
+              private loadingCtrl:LoadingController,
               public http   : HttpClient,
               private barcodeScanner: BarcodeScanner,
-              public plt: Platform,
               public toastCtrl  : ToastController,
               public alertCtrl  : AlertController)
   {
@@ -105,7 +105,55 @@ export class PhotoboothPage {
    */
   takePhoto() : void
   {
-    this.navCtrl.push('PhotoboothPage');
+    const options: CameraOptions = {
+      quality: 90,
+      destinationType: this.camera.DestinationType.DATA_URL,
+      encodingType: this.camera.EncodingType.JPEG,
+      mediaType: this.camera.MediaType.PICTURE
+    }
+
+    this.camera.getPicture(options).then((imageData) => {
+      // imageData is either a base64 encoded string or a file URI
+      // If it's base64:
+      this.myPhoto = 'data:image/jpeg;base64,' + imageData;
+    }, (err) => {
+      // Handle error
+    });
+  }
+
+  uploadImage(){  
+    //Show loading
+    let loader = this.loadingCtrl.create({
+      content: "Uploading..."
+    });
+    loader.present();
+
+    //create file transfer object
+    const fileTransfer: FileTransferObject = this.transfer.create();
+
+    //random int
+    var random = Math.floor(Math.random() * 100);
+
+    //option transfer
+    let options: FileUploadOptions = {
+      fileKey: 'photo',
+      fileName: "myImage_" + random + ".jpg",
+      chunkedMode: false,
+      httpMethod: 'post',
+      mimeType: "image/jpeg",
+      headers: {}
+    }
+
+    //file transfer action
+    fileTransfer.upload(this.myPhoto, this.baseURI + 'upload-photo.php', options)
+      .then((data) => {
+        this.presentAlertConfirm("L'image a bien été uploadée");
+        loader.dismiss();
+      }, (err) => {
+        console.log(err);
+        this.presentAlert("Erreur lors de l'upload, veuillez réessayer");
+        loader.dismiss();
+      });
   }
 
 
@@ -196,8 +244,6 @@ export class PhotoboothPage {
     this.http
       .post(url, JSON.stringify(options), headers)
       .subscribe(data => {
-          // If the request was successful notify the user
-          this.hideContent = true;
           this.presentAlertConfirm(`1 place validée`);
         },
         (error: any) => {
@@ -206,14 +252,6 @@ export class PhotoboothPage {
   }
 
 
-  /**
-   * Manage notifying the user of the outcome of remote operations
-   *
-   * @public
-   * @method sendNotification
-   * @param message 	{String} 			Message to be displayed in the notification
-   * @return {None}
-   */
   sendNotification(message : string)  : void
   {
     let notification = this.toastCtrl.create({

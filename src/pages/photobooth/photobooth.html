@@ -9,5 +9,8 @@
   <h2 text-center="" class="app-title">Smart Check-In</h2>
 
   <button ion-button block large (click)="takePhoto()" class="photoboothButton"><ion-icon name="camera"></ion-icon><span class="text-icon">Take a photo</span></button>
+  <button ion-button block large (click)="uploadImage()" class="photoboothButton"><ion-icon name="save"></ion-icon><span class="text-icon">Save photo</span></button>
+
+  <p align="center"><img src="{{ myPhoto }}"></p>
 
 </ion-content>
