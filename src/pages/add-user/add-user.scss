@@ -1,0 +1,31 @@
+page-add-user {
+  .gras{
+    font-weight : bold;
+    float: right;
+  }
+  .plus{
+    display: inline-block;
+    float: right;
+    vertical-align: middle;
+  }
+  .moins{
+    display: inline-block;
+    float: left;
+    vertical-align: middle;
+  }
+
+  .userValidation{
+    display: inline-block;
+    font-size: 20px;
+    width: 100%;
+    padding : 10px 0;
+    text-align: center;
+  }
+
+  @media print{
+    ion-header{ display: none !important; }  
+    .non-print { display: none !important; }
+    [ion-content-print]{ overflow-y: visible !important; position: relative; }
+  }
+
+}

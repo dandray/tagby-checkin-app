@@ -1,0 +1,94 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>{{ pageTitle }}</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+    <section ion-content-print>
+      <ion-card id="qrCard">
+        <ion-card-header>
+          <ion-card-title text-center="
+    ">{{ userFirstName }} {{ userLastName }}</ion-card-title>
+
+        </ion-card-header>
+        <ion-card-content>
+          <p>Tel: <span class="gras">{{ userTelDisplay }}</span></p>
+          <p>Email : <span class="gras">{{ userEmail }}</span></p>
+          <p>Table : <span class="gras">{{ userNumeroTable }}</span></p>
+          <p>Nb places : <span class="gras">{{ userNbPlaces }}</span></p>
+          <p>Places validées : <span class="gras">{{ userValidation }}</span></p>
+        </ion-card-content>
+      </ion-card>
+    </section>
+<div class="non-print">
+    <div class="userValidation">
+        <button ion-button icon-only class="plus" (click)="addValidation()"><ion-icon name="add"></ion-icon></button>
+        <p style="display: inline-block; line-height:0.2">{{ nbValidations }}</p>
+        <button ion-button icon-only class="moins"(click)="removeValidation()"><ion-icon name="remove"></ion-icon></button>
+      </div>
+    
+      <div>
+        <div *ngIf="hideForm">
+          <ion-item class="post-entry-message" text-wrap>
+            <h2>User validé !</h2>
+          </ion-item>
+        </div>
+    
+    
+        <div *ngIf="!hideForm">
+          <form [formGroup]="form" (ngSubmit)="saveEntry()">
+    
+            <ion-list>
+                  <ion-input
+                    type="hidden"
+                    formControlName="firstname"
+                    [(ngModel)]="userFirstName"></ion-input>
+    
+                  <ion-input
+                    type="hidden"
+                    formControlName="lastname"
+                    [(ngModel)]="userLastName"></ion-input>
+    
+                  <ion-input
+                    type="hidden"
+                    formControlName="validation"
+                    [(ngModel)]="userValidation"></ion-input>
+    
+                  <ion-input
+                    type="hidden"
+                    formControlName="email"
+                    [(ngModel)]="userEmail"></ion-input>
+    
+    
+                  <ion-input
+                    type="hidden"
+                    formControlName="tel"
+                    [(ngModel)]="userTel"></ion-input>
+    
+    
+                  <ion-input
+                    type="hidden"
+                    formControlName="numero_table"
+                    [(ngModel)]="userNumeroTable"></ion-input>
+    
+                  <ion-input
+                    type="hidden"
+                    formControlName="nb_places"
+                    [(ngModel)]="userNbPlaces"></ion-input>
+    
+    
+              <ion-item>
+                <button
+                  ion-button block large color="secondary"
+                  [disabled]="!form.valid">Valider</button>
+              </ion-item>
+            </ion-list>
+          </form>
+          <button ion-button (click)="goQrCard(userFirstName, userLastName, userTel)" block large outline color="danger">Print badge</button>
+          <br>
+        </div>
+      </div>
+    
+</div>
+</ion-content>

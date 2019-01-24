@@ -1,6 +1,8 @@
 {
   "name": "Checkin-CDM",
-  "integrations": {},
+  "id": "4d3b7aea",
   "type": "ionic-angular",
-  "id": "4d3b7aea"
+  "integrations": {
+    "cordova": {}
+  }
 }

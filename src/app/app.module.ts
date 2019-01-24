@@ -1,20 +1,30 @@
 import { BrowserModule } from '@angular/platform-browser';
+import { HttpClientModule } from '@angular/common/http';
 import { ErrorHandler, NgModule } from '@angular/core';
-import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
+import {IonicApp, IonicErrorHandler, IonicModule} from 'ionic-angular';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
+import { Printer, PrintOptions } from '@ionic-native/printer';
+import { File } from '@ionic-native/file';
 
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
+import {BarcodeScanner} from "@ionic-native/barcode-scanner";
+import {NgxQRCodeModule} from "ngx-qrcode2";
+import {HomePageModule} from "../pages/home/home.module";
+
 
 @NgModule({
   declarations: [
-    MyApp,
-    HomePage
+    MyApp
+    //HomePage
   ],
   imports: [
     BrowserModule,
-    IonicModule.forRoot(MyApp)
+    HttpClientModule,
+    IonicModule.forRoot(MyApp),
+    NgxQRCodeModule,
+    HomePageModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -24,7 +34,10 @@ import { HomePage } from '../pages/home/home';
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    BarcodeScanner,
+    Printer,
+    File
   ]
 })
 export class AppModule {}

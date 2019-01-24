@@ -1,0 +1,41 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Carte de visite</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <ion-card id="qrCard" class="qrCard">
+
+    <ion-card-header>
+      <ion-card-title text-center="
+" class="cardTitle">{{ firstname }} {{ lastname }}<br>Tagby</ion-card-title>
+    </ion-card-header>
+
+    <ion-grid>
+        <ion-row>
+          <ion-col class="imgCol">
+            <img id="logo" class="logo" src="../../assets/imgs/tagby_logo.png">
+            <img id="logo" style="display:none" class="logos" src="../../assets/imgs/drawable-hdpi-icon.bmp">
+          </ion-col>
+          <ion-col>         
+            <ngx-qrcode [qrc-value]="tel" class="qrCode"></ngx-qrcode>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+
+  </ion-card>
+
+  <div class="non-print">
+      <br>
+      <button ion-button (click)="printQR()" block large class="printBtn">Print</button> 
+  </div>
+</ion-content>
+
+<style
+>@page { size: letter landscape }
+
+.cardTitle{
+  font-size: 18px;
+}
+</style>

@@ -1,0 +1,45 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Rechercher un invité</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+
+
+  <!--<ion-searchbar [(ngModel)]="searchTerm" (ionInput)="filterUsers(searchTerm)"></ion-searchbar>-->
+  <ion-item>
+    <ion-label color="primary" floating>Prénom</ion-label>
+    <ion-input type="text" [(ngModel)]="searchTerm"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label color="primary" floating>Nom</ion-label>
+    <ion-input type="text" [(ngModel)]="searchTerm2"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label color="primary" floating>Tel (optionnel)</ion-label>
+    <ion-input type="number" [(ngModel)]="searchTerm3" ></ion-input>
+  </ion-item>
+  <br>
+
+  <ion-item>
+    <ion-label color="primary" floating>Numéro de table (optionnel)</ion-label>
+    <ion-input type="number" [(ngModel)]="searchTerm4" ></ion-input>
+  </ion-item>
+  <br>
+  <button ion-button block large class="button" (click)="viewEntry({ record : search(searchTerm, searchTerm2, searchTerm3, searchTerm4)})">Search</button>
+
+<!--
+  <ion-label>Prénom : </ion-label> <ion-searchbar (ionInput)="filterUsersFirstName($event.target.value)"></ion-searchbar>
+  <ion-label>Nom : </ion-label><ion-searchbar (ionInput)="filterUsersLastName($event.target.value)"></ion-searchbar>
+  <button ion-button color="primary"  class="button" (click)="isVisible=true">Search</button>
+  <br>
+  <ng-container *ngIf="isVisible===true">
+
+    <button ion-item *ngFor="let item of items" (click)="viewEntry({ record: item })">
+      {{ item.firstname }} {{ item.lastname }}
+    </button>
+  </ng-container>-->
+
+</ion-content>

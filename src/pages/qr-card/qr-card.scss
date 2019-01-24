@@ -1,0 +1,40 @@
+page-qr-card {
+  .gras{
+    font-weight : bold;
+    float: right;
+  }
+
+  @media print{
+    @page {size: A5 landscape; margin: 0!important; padding: 0!important;}
+    ion-header{ display: none !important; }  
+    .non-print { display: none !important; }
+    .maDiv { display: none !important; }
+    .qrCard{ border : 2px solid blue; height: 100%!important; width: 100%!important; margin : 0!important; padding: 0!important; }
+    .cardTitle{
+      font-size: 10px!important;
+    }
+  }
+
+  .logo {  
+    max-height: 100%;  
+    max-width: 100%; 
+    width: auto;
+    height: auto;
+    position: absolute;  
+    top: 0;  
+    bottom: 0;  
+    left: 0;  
+    right: 0;  
+    margin: auto;
+  }
+
+  .cardTitle{
+    font-weight: bold;
+    font-size: 20px;
+  }
+
+  .printBtn{
+    background-color: #E15E4A;
+  }
+
+}

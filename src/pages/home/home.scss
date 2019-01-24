@@ -1,3 +1,37 @@
 page-home {
+  .content{
+    padding: 0px;
+    background-image: url('../../assets/imgs/fond.png');
+    background-size: cover;
+  }
+
+  .scanButton{
+    //height: 10%;
+    margin-bottom: 25%;
+    margin-top: 30%;
+    background-color: #E15E4A;
+  }
+  .app-title{
+    margin-bottom: 20px;
+  }
+  .img-title{
+    padding-top: 5%;
+    display: block;
+    width: 190px;
+    margin-right: auto;
+    margin-left: auto;
+  }
+
+  .searchButton{
+    margin-bottom: 25%;
+  }
+
+  .text-icon{
+    margin-left: 5px;
+  }
+
+  .photoboothButton{
+    background-color: #ab47bc
+  }
 
 }
