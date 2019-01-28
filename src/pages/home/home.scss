@@ -35,13 +35,14 @@ page-home {
   }
 
   .photoboothButton{
-    background-color: #ab47bc
+    background-color: #ab47bc;
+    //visibility: hidden;
   }
   .photoboothButton:active{
-    background:#a735bb;
+    background:#a735bb!important;
   }
   .photoboothButton:after{
-    background-color: #a735bb;
+    background-color: #a735bb!important;
   }
 
 }

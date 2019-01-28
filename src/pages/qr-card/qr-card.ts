@@ -22,6 +22,8 @@ export class QrCardPage {
   public lastname : string;
   public tel : string = "";
 
+  public objPrintersAll : Array<any>;
+
   letterObj = {
     to: '',
     from: '',
@@ -99,11 +101,13 @@ export class QrCardPage {
         landscape: true,
         grayscale: true
       };
+      var image = new Image();
+      image.src = "../../assets/imgs/tagby_logo.png";
 
-    const div = document.getElementById("maDiv");
+    const div = document.getElementById("logo");
       html2canvas(div).then((canvas)=>{
       let imgData = canvas.toDataURL("base64/BMP");
-      cordova.plugins.brotherPrinter.printViaSDK(this.getDataUrl(imgData), function(err){
+      cordova.plugins.brotherPrinter.printViaSDK(this.getDataUrl(image), function(err){
         console.log("Error while printing");
       });
     });
@@ -124,4 +128,35 @@ export class QrCardPage {
     }
   }
 
+
+
+  printerSearch(){
+    cordova.plugins.brotherPrinter.findNetworkPrinters(this.printerSearchSuccess, this.printerSearchError);
+  }
+  
+  printerSearchSuccess(printers){
+    this.objPrintersAll = printers
+    this.printerSet();
+  }
+  
+  printerSearchError(reason){
+  alert('error: ' + reason);
+  }
+  
+  printerSet(){
+  cordova.plugins.brotherPrinter.setPrinter(this.objPrintersAll[0], this.printerSetSuccess, this.printerSetError);
+  }
+  
+  printerSetSuccess(){
+  var img = "base64string";
+  cordova.plugins.brotherPrinter.printViaSDK(img, this.printerPrintSuccess);
+  }
+  
+  printerSetError(reason){
+  alert('error: ' + reason);
+  }
+  
+  printerPrintSuccess(status){
+  alert('Printed ' + status);
+  }
 }

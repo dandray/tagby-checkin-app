@@ -125,7 +125,7 @@ export class SearchPage {
     }
     //Si l'entrée envoyée est complètement vide, c'est qu'on a notre compteur à 2, il y a 2 invités qui correspondent à la recherche
     else if(JSON.stringify(param) == "{}"){
-      this.presentAlert("Ce nom est lié à 2 utilisateurs en base de données : Merci d'entrer le numéro de tel");
+      this.presentAlert("Ce nom est lié à 2 utilisateurs en base de données : Merci d'entrer le numéro de tel ou de table");
     }
     //Si on a un seul user sélectionné par la recherche, on affiche la page de validation
     else{
@@ -172,6 +172,8 @@ export class SearchPage {
     else{
       //On boucle sur les enregistrements de la base pour voir s'il y a une correspondance
       for(let i=0; i<this.items.length;i++){
+        let prenom = this.items[i].firstname.toLowerCase();
+        let nom = this.items[i].lastname.toLowerCase()
         //On formate le numero de tel de la bdd pour qu'il corresponde au format tapé par l'hotesse
         let telBDD = "0" + this.items[i].tel.substring(5,this.items[i].tel.length);
 
@@ -179,19 +181,20 @@ export class SearchPage {
         if(mySearchTerm4!=''){
           numero_table = this.items[i].numero_table;
 
-          if(telBDD==mySearchTerm3 && numero_table==mySearchTerm4){
+          if(telBDD==mySearchTerm3 && numero_table==mySearchTerm4 || prenom==mySearchTerm && nom==mySearchTerm2 && numero_table==mySearchTerm4){
             id = this.items[i];
+            console.dir(id);
             return id;
           }
         }
-        //Si on a entré le numéro de téléphone mais pas de numéro de table, on ne s'occupe de rien d'autre, c'est lui qui nous envoie sur le user en question
+        //Si on a entré le numéro de téléphone et que c'est suffisant, on renvoie à l'utilisateur donné
         else if(telBDD==mySearchTerm3){
           id = this.items[i];
           return id;
         }
         
-        //Si on a nom/prénom qui correspondent à une donnée, on enregistre la donnée en mémoire et on incrémente le compteur
-        else if((this.items[i].firstname.toLowerCase()==mySearchTerm.toLowerCase()) && (this.items[i].lastname.toLowerCase()==mySearchTerm2.toLowerCase())){
+        //Si on a nom/prénom qui correspondent à une donnée et que c'est suffisant, on enregistre la donnée en mémoire et on incrémente le compteur
+        else if((prenom==mySearchTerm.toLowerCase()) && (nom==mySearchTerm2.toLowerCase())){
           id = this.items[i];
           count++;
         }
