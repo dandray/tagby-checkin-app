@@ -6,7 +6,10 @@ import { File } from '@ionic-native/file';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {BarcodeScanner} from "@ionic-native/barcode-scanner";
 import { empty } from 'rxjs/Observer';
+import { AndroidPermissions } from '@ionic-native/android-permissions';
+/*import { SMS } from '@ionic-native/sms';*/
 
+declare var sms : any;
 
 @IonicPage()
 @Component({
@@ -42,6 +45,8 @@ export class SharePage {
               private loadingCtrl:LoadingController,
               public http   : HttpClient,
               private barcodeScanner: BarcodeScanner,
+              private androidPermissions : AndroidPermissions,
+              /*private sms : SMS,*/
               public toastCtrl  : ToastController,
               public alertCtrl  : AlertController)
   {
@@ -93,10 +98,16 @@ export class SharePage {
 /*
   socialTag() :void 
   {
-    // Send a text message using default options
+    this.androidPermissions.requestPermission(this.androidPermissions.PERMISSION.SEND_SMS).then(() => {
+      //this is to send SMS
+      this.sms.send('00972586588285', 'Hello world!');
+      }).catch((err) => {
+       alert(JSON.stringify(err));
+      });
+    /* Send a text message using default options
     this.sms.send('00972586588285', 'Hello world!');
-  }
-*/
+  }*/
+
 
 
 
@@ -113,7 +124,27 @@ export class SharePage {
   }
 
 
+  
 
+  sendSMS() {
+    var messageInfo = {
+        phoneNumber: "00972586588285",
+        textMessage: "Here is your link : "
+      };
+      this.androidPermissions.requestPermission(this.androidPermissions.PERMISSION.SEND_SMS).then(() => {
+          sms.sendMessage(messageInfo, function(message : any) {
+              alert(message);
+          }, function(error) {
+              alert(error);
+          });
+      }).catch((err) => {
+          alert(JSON.stringify(err));
+      });
+
+  };
+  
+
+  
 
 
   /**

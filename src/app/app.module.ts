@@ -14,7 +14,8 @@ import { File } from '@ionic-native/file';
 import {BarcodeScanner} from "@ionic-native/barcode-scanner";
 import {NgxQRCodeModule} from "ngx-qrcode2";
 import {HomePageModule} from "../pages/home/home.module";
-
+import { AndroidPermissions } from '@ionic-native/android-permissions';
+/*import { SMS } from '@ionic-native/sms';*/
 
 @NgModule({
   declarations: [
@@ -39,7 +40,9 @@ import {HomePageModule} from "../pages/home/home.module";
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     BarcodeScanner,
     Printer,
-    File
+    File,
+    AndroidPermissions,
+    /*SMS*/
   ]
 })
 export class AppModule {}

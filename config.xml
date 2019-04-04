@@ -91,6 +91,8 @@
     <plugin name="com.threescreens.cordova.plugin.brotherPrinter" spec="git+https://github.com/gordol/cordova-brother-label-printer.git" />
     <plugin name="cordova-plugin-file-transfer" spec="1.7.1" />
     <plugin name="cordova-plugin-camera" spec="4.0.3" />
+    <plugin name="cordova-plugin-android-permissions" spec="1.0.0" />
+    <plugin name="com.jsmobile.plugins.sms" spec="https://github.com/hazems/cordova-sms-plugin.git" />
     <engine name="android" spec="7.1.4" />
     <engine name="browser" spec="5.0.4" />
     <engine name="ios" spec="^4.5.5" />
