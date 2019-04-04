@@ -139,7 +139,7 @@ export class SearchPage {
     let count = 0;
     let numero_table = '';
 
-    //On enlève les espaces des chaines de caractères saisies pour les 3 champs
+    //On enlève les espaces des chaines de caractères saisies pour les 4 champs
     if(mySearchTerm == null){
       mySearchTerm = '';
     }

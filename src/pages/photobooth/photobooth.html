@@ -9,8 +9,12 @@
   <h2 text-center="" class="app-title">Smart Check-In</h2>
 
   <button ion-button block large (click)="takePhoto()" class="photoboothButton"><ion-icon name="camera"></ion-icon><span class="text-icon">Take a photo</span></button>
-  <button ion-button block large (click)="uploadImage()" class="photoboothButton"><ion-icon name="save"></ion-icon><span class="text-icon">Save photo</span></button>
-
+  
   <p align="center"><img src="{{ myPhoto }}"></p>
 
+  <!--Show Share button when the photo is displayed-->
+  <div *ngIf="isVisible===true">
+    <button ion-button block large outline (click)="goShare()" class="shareButton"><ion-icon name="share"></ion-icon><span class="text-icon">Share</span></button>
+  </div>
+  
 </ion-content>

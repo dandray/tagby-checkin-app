@@ -8,13 +8,12 @@ import {BarcodeScanner} from "@ionic-native/barcode-scanner";
 import { empty } from 'rxjs/Observer';
 
 
-
 @IonicPage()
 @Component({
-  selector: 'page-photobooth',
-  templateUrl: 'photobooth.html'
+  selector: 'page-share',
+  templateUrl: 'share.html'
 })
-export class PhotoboothPage {
+export class SharePage {
   
   public myPhoto: any;
 
@@ -39,8 +38,6 @@ export class PhotoboothPage {
 
 
   constructor(public navCtrl: NavController,
-              private camera: Camera,
-              private transfer: FileTransfer, 
               private file: File, 
               private loadingCtrl:LoadingController,
               public http   : HttpClient,
@@ -93,79 +90,13 @@ export class PhotoboothPage {
         });
   }
 
-
-  /**
-   * Take a photo
-   *
-   * @public
-   * @method takePhoto
-   * @return {None}
-   */
-  takePhoto() : void
+/*
+  socialTag() :void 
   {
-    const options: CameraOptions = {
-      quality: 90,
-      destinationType: this.camera.DestinationType.DATA_URL,
-      encodingType: this.camera.EncodingType.JPEG,
-      mediaType: this.camera.MediaType.PICTURE
-    }
-
-    this.camera.getPicture(options).then((imageData) => {
-      // imageData is either a base64 encoded string or a file URI
-      // If it's base64:
-      this.myPhoto = 'data:image/jpeg;base64,' + imageData;
-      this.uploadImage();
-    }, (err) => {
-      // Handle error
-    });
-    /*if(this.myPhoto!=empty){
-    }*/
+    // Send a text message using default options
+    this.sms.send('00972586588285', 'Hello world!');
   }
-
-
-    /**
-   * Upload an image
-   *
-   * @public
-   * @method uploadImage
-   * @return {None}
-   */
-  uploadImage(){  
-    //Show loading
-    let loader = this.loadingCtrl.create({
-      content: "Uploading..."
-    });
-    loader.present();
-
-    //create file transfer object
-    const fileTransfer: FileTransferObject = this.transfer.create();
-
-    //random int
-    var random = Math.floor(Math.random() * 100);
-
-    //option transfer
-    let options: FileUploadOptions = {
-      fileKey: 'photo',
-      fileName: "myImage_" + random + ".jpg",
-      chunkedMode: false,
-      httpMethod: 'post',
-      mimeType: "image/jpeg",
-      headers: {}
-    }
-
-    //file transfer action
-    fileTransfer.upload(this.myPhoto, this.baseURI + 'upload-photo.php', options)
-      .then((data) => {
-        this.presentAlertConfirm("L'image a bien été uploadée");
-        this.isVisible = true;
-        loader.dismiss();
-      }, (err) => {
-        console.log(err);
-        this.presentAlert("Erreur lors de l'upload, veuillez réessayer");
-        loader.dismiss();
-      });
-  }
-
+*/
 
 
 
