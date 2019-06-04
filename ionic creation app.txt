@@ -17,3 +17,11 @@ cordova plugin remove <PLUGIN_NAME>
 APKs : 
 C:\Users\drayd\Checkin-CDM\platforms\android\app\build\outputs\apk\debug
 
+Tester l'appli : 
+>ionic cordova run android --device 
+
+- Problème ionic : 
+npm install @ionic-native/pluginName@4
+https://stackoverflow.com/questions/54375185/type-httporiginal-is-not-assignable-to-type-provider-ionic-error-after-plugin-i
+
+
