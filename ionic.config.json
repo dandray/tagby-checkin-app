@@ -1,8 +1,9 @@
 {
   "name": "Checkin-CDM",
-  "id": "4d3b7aea",
-  "type": "ionic-angular",
   "integrations": {
-    "cordova": {}
-  }
+    "cordova": {},
+    "capacitor": {}
+  },
+  "type": "ionic-angular",
+  "id": "4d3b7aea"
 }

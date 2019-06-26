@@ -40,7 +40,7 @@ export class SearchPage {
    * @public
    * @description     Remote URI for retrieving data from and sending data to
    */
-  private baseURI               : string  = "http://cdm.tag.by/mobileApp/";
+  private baseURI               : string  = "https://qrcode.tag.by/mobileApp/";
 
 
   /**
@@ -90,7 +90,7 @@ export class SearchPage {
   load() : void
   {
     this.http
-      .get('http://cdm.tag.by/mobileApp/retrieve-data.php')
+      .get('https://qrcode.tag.by/mobileApp/retrieve-data?idEvent='+localStorage.getItem("idEvent"))
       .subscribe((data : any) =>
         {
           console.dir('load : ' + data);
@@ -125,7 +125,7 @@ export class SearchPage {
     }
     //Si l'entrée envoyée est complètement vide, c'est qu'on a notre compteur à 2, il y a 2 invités qui correspondent à la recherche
     else if(JSON.stringify(param) == "{}"){
-      this.presentAlert("Ce nom est lié à 2 utilisateurs en base de données : Merci d'entrer le numéro de tel ou de table");
+      this.presentAlert("Ce nom est lié à 2 utilisateurs en base de données : Merci d'entrer le numéro de tel");
     }
     //Si on a un seul user sélectionné par la recherche, on affiche la page de validation
     else{

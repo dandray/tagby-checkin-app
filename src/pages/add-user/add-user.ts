@@ -156,7 +156,7 @@ export class AddUserPage {
    * @public
    * @description     Remote URI for retrieving data from and sending data to
    */
-  private baseURI               : string  = "http://cdm.tag.by/mobileApp/";
+  private baseURI               : string  = "https://qrcode.tag.by/mobileApp/";
 
 
 
@@ -256,8 +256,8 @@ export class AddUserPage {
   updateEntry(firstname : string, lastname : string, validation : number, tel : string) : void
   {
     let headers 	: any		= new HttpHeaders({ 'Content-Type': 'application/json' }),
-      options 	: any		= { "key" : "update", "firstname" : firstname, "lastname" : lastname, "validation" : validation, "tel" : tel},
-      url       : any      	= this.baseURI + "manage-data.php";
+      options 	: any		= { "key" : "update", "firstname" : firstname, "lastname" : lastname, "validation" : validation, "tel" : tel, "idEvent" : localStorage.getItem("idEvent")},
+      url       : any      	= this.baseURI + "manage-data";
 
     this.http
       .post(url, JSON.stringify(options), headers)
@@ -406,7 +406,7 @@ export class AddUserPage {
   {
     let headers 	: any		= new HttpHeaders({ 'Content-Type': 'application/json' }),
       options 	: any		= { "key" : "print", "tel" : tel},
-      url       : any      	= this.baseURI + "manage-data.php";
+      url       : any      	= this.baseURI + "manage-data";
 
     this.http
       .post(url, JSON.stringify(options), headers)

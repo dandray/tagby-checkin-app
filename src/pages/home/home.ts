@@ -37,7 +37,7 @@ export class HomePage {
    * @public
    * @description     Remote URI for retrieving data from and sending data to
    */
-  private baseURI               : string  = "http://cdm.tag.by/mobileApp/";
+  private baseURI               : string  = "https://qrcode.tag.by/mobileApp/";
 
 
   /**
@@ -60,7 +60,6 @@ export class HomePage {
 
 
 
-
   /**
    * Triggered when template view is about to be entered
    * Returns and parses the PHP data through the load() method
@@ -75,7 +74,10 @@ export class HomePage {
   }
 
 
-
+  ionViewDidEnter()
+  {
+    //this.presentAlert(localStorage.getItem("idEvent"));
+  }
 
   /**
    * Retrieve the JSON encoded data from the remote server
@@ -89,7 +91,7 @@ export class HomePage {
   load() : void
   {
     this.http
-      .get('http://cdm.tag.by/mobileApp/retrieve-data.php')
+      .get('https://qrcode.tag.by/mobileApp/retrieve-data?idEvent='+localStorage.getItem("idEvent"))
       .subscribe((data : any) =>
         {
           //console.dir('load : ' + data);
@@ -129,6 +131,18 @@ export class HomePage {
     this.navCtrl.push('SearchPage');
   }
 
+
+  /**
+   * Allow navigation to the ScanPage
+   *
+   * @public
+   * @method goScan
+   * @return {None}
+   */
+  goScan() : void
+  {
+    this.navCtrl.push('ScanPage');
+  }
 
   /**
    * Allow navigation to the PhotoboothPage
@@ -219,16 +233,21 @@ export class HomePage {
   }
 
   scanCode() {
-
     this.barcodeScanner.scan().then(barcodeData => {
-      this.scannedCode = barcodeData.text;
-      this.selectEntryByQR(this.scannedCode);
+      if(barcodeData.cancelled == false){
+        this.scannedCode = barcodeData.text;
+        var tel  = this.scannedCode.substring(0, this.scannedCode.length - 1);
+        tel = tel.replace('https://qrcode.tag.by/vcard?tag=', '');
+        this.selectEntryByQR(tel);
+      }else{
+        //this.presentAlert('fff');
+      }
     }, (err) => {
-      console.log('Error: ', err);
+     console.log('Error: ', err);
     });
-
-
   }
+
+  
 
 
   /*
@@ -259,15 +278,15 @@ export class HomePage {
    */
   selectEntryByQR(tel : string) : void
   {
-
     let headers 	: any		= new HttpHeaders({ 'Content-Type': 'application/json' }),
-      options 	: any		= { "key" : "selectByQR", "tel" : tel},
-      url       : any      	= this.baseURI + "manage-data.php";
+      options 	: any		= { "key" : "selectByQR", "tel" : tel, "idEvent" : localStorage.getItem("idEvent")},
+      url       : any      	= this.baseURI + "manage-data";
 
     this.http
       .post(url, JSON.stringify(options), headers)
       .subscribe((data : any) =>
         {
+          if (data != null ) {
           this.fields = data;
           let validations = this.fields[0];
           let nb_places   = this.fields[1];
@@ -277,13 +296,16 @@ export class HomePage {
               this.presentAlert('Cet utilisateur a déjà validé toutes ses places!');
             }
             else{
-              this.updateEntryByQR(this.scannedCode);
+              this.updateEntryByQR(tel);
             }
           }
           else{
             this.presentAlert('Ce QR code n\'existe pas dans notre base de données');
           }
           console.dir('data : ' + this.fields);
+          }else{
+            //this.presentAlert('fff!');
+          }
         },
         (error : any) =>
         {
@@ -306,8 +328,8 @@ export class HomePage {
    */
   updateEntryByQR(tel : string) : void {
     let headers: any = new HttpHeaders({'Content-Type': 'application/json'}),
-      options: any = {"key": "updateByQR", "tel": tel},
-      url: any = this.baseURI + "manage-data.php";
+      options: any = {"key": "updateByQR", "tel": tel, idEvent:localStorage.getItem("idEvent")},
+      url: any = this.baseURI + "manage-data";
 
     console.dir('updateFunction : ' + tel);
     this.http
@@ -315,14 +337,18 @@ export class HomePage {
       .subscribe(data => {
           // If the request was successful notify the user
           this.hideContent = true;
-          this.presentAlertConfirm(`1 place validée`);
+          this.presentAlertConfirm(`utilisateur validé`);
         },
         (error: any) => {
           this.presentAlert('Something went wrong!');
         });
   }
 
+  logout(){
 
+    localStorage.clear();
+    this.navCtrl.push('LoginPage');
+  }
 
 
   /**
@@ -389,3 +415,5 @@ export class HomePage {
   }
 
 }
+
+

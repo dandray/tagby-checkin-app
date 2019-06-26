@@ -1,4 +1,4 @@
-page-home {
+page-login {
   .content{
     padding: 0px;
     background-image: url('../../assets/imgs/fond.png');
@@ -14,12 +14,6 @@ page-home {
   .scanButton:active{
     background-color: rgb(219, 78, 57);
   }
-
-  .logoutButton{
-    //height: 10%;
-    background-color:black;
-  }
-
 
   .app-title{
     margin-bottom: 20px;

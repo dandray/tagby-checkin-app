@@ -1,0 +1,21 @@
+<ion-header>
+</ion-header>
+
+<ion-content padding class="content">
+  <img class="img-title" src="../assets/imgs/tagby_logo.png">
+  <h2 text-center="" class="app-title">Login Tag By</h2>
+
+
+<ion-item>
+  <ion-label>Username</ion-label>
+  <ion-input type="Text" [(ngModel)]="username"></ion-input>
+</ion-item>
+<br>
+<ion-item>
+  <ion-label>Password</ion-label>
+  <ion-input type="Password" [(ngModel)]="password"></ion-input>
+</ion-item>
+  <br>
+  <button ion-button block large icon-left (click)="login(username, password)" class="login"><ion-icon name="qr-login"></ion-icon>Login</button>
+
+</ion-content>

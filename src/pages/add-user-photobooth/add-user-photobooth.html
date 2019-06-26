@@ -1,0 +1,33 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Add User Photobooth</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding class="content">
+  <img class="img-title" src="../assets/imgs/tagby_logo.png">
+  <h2 text-center="" class="app-title">Smart Check-In</h2>
+  <ion-title class='text-center'>Add user : </ion-title>
+    <!--<ion-searchbar [(ngModel)]="searchTerm" (ionInput)="filterUsers(searchTerm)"></ion-searchbar>-->
+    <ion-item class ='my-ion-item'>
+      <ion-label color="primary" floating>Firstname</ion-label>
+      <ion-input type="text" [(ngModel)]="firstname"></ion-input>
+    </ion-item>
+    <ion-item class ='my-ion-item'>
+      <ion-label color="primary" floating>Lastname</ion-label>
+      <ion-input type="text" [(ngModel)]="lastname"></ion-input>
+    </ion-item>
+    <ion-item class ='my-ion-item'>
+      <ion-label color="primary" floating>Phone</ion-label>
+      <ion-input type="number" [(ngModel)]="phone" ></ion-input>
+    </ion-item>
+    <ion-item class ='my-ion-item'>
+      <ion-label color="primary" floating>Email</ion-label>
+      <ion-input type="text" [(ngModel)]="email" ></ion-input>
+    </ion-item>
+    <br>
+  <button ion-button block large outline color="tertiary" (click)="createUser(firstname, lastname, phone, email)" class="socialTagButton"><ion-icon name=""></ion-icon><span class="text-icon">Validate</span></button>
+
+  
+  
+</ion-content>

@@ -1,13 +1,13 @@
 import { NgModule } from '@angular/core';
 import { IonicPageModule } from 'ionic-angular';
-import { SharePage } from './share';
+import { AddUserPhotobooth } from './add-user-photobooth';
 
 @NgModule({
   declarations: [
-    SharePage
+    AddUserPhotobooth
   ],
   imports: [
-    IonicPageModule.forChild(SharePage),
+    IonicPageModule.forChild(AddUserPhotobooth),
   ]
 })
 export class HomePageModule {}

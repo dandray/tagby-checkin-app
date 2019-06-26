@@ -1,4 +1,4 @@
-page-share {
+page-add-user-photobooth {
   .content{
     padding: 0px;
     background-image: url('../../assets/imgs/fond.png');
@@ -18,5 +18,13 @@ page-share {
     margin-right: 5px; 
   }
 
+  .my-ion-item{
+    background: transparent;
+    //border-bottom : 1px solid black;
+  }
 
+  .text-center{
+    text-align: center;
+    
+  }
 }

@@ -7,15 +7,17 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { Printer, PrintOptions } from '@ionic-native/printer';
 
 import { MyApp } from './app.component';
-import { HomePage } from '../pages/home/home';
+import { LoginPage } from '../pages/login/login';
 import { Camera } from '@ionic-native/camera';
 import { FileTransfer } from '@ionic-native/file-transfer';
 import { File } from '@ionic-native/file';
 import {BarcodeScanner} from "@ionic-native/barcode-scanner";
 import {NgxQRCodeModule} from "ngx-qrcode2";
-import {HomePageModule} from "../pages/home/home.module";
+import {LoginPageModule} from "../pages/login/login.module";
 import { AndroidPermissions } from '@ionic-native/android-permissions';
-/*import { SMS } from '@ionic-native/sms';*/
+import { EmailComposer } from '@ionic-native/email-composer';
+import { SMS } from '@ionic-native/sms';
+
 
 @NgModule({
   declarations: [
@@ -27,12 +29,12 @@ import { AndroidPermissions } from '@ionic-native/android-permissions';
     HttpClientModule,
     IonicModule.forRoot(MyApp),
     NgxQRCodeModule,
-    HomePageModule
+    LoginPageModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    HomePage
+    LoginPage
   ],
   providers: [
     StatusBar,
@@ -42,7 +44,8 @@ import { AndroidPermissions } from '@ionic-native/android-permissions';
     Printer,
     File,
     AndroidPermissions,
-    /*SMS*/
+    SMS,
+    EmailComposer
   ]
 })
 export class AppModule {}

@@ -10,11 +10,15 @@
 
   <button ion-button block large (click)="takePhoto()" class="photoboothButton"><ion-icon name="camera"></ion-icon><span class="text-icon">Take a photo</span></button>
   
-  <p align="center"><img src="{{ myPhoto }}"></p>
+  <p align="center"><img src="{{ myPhotoWatermark }}"></p>
 
   <!--Show Share button when the photo is displayed-->
   <div *ngIf="isVisible===true">
-    <button ion-button block large outline (click)="goShare()" class="shareButton"><ion-icon name="share"></ion-icon><span class="text-icon">Share</span></button>
+    <button ion-button block large outline (click)="scanCodeShare()" class="shareButton"><ion-icon name="share"></ion-icon><span class="text-icon">Share by Qr</span></button>
   </div>
+    <!--Show Share button when the photo is displayed-->
+    <div *ngIf="isVisible===true">
+      <button ion-button block large outline (click)="goAddUserPhotobooth()" class="shareButton"><ion-icon name="share"></ion-icon><span class="text-icon">Add Photobooth user</span></button>
+    </div>
   
 </ion-content>
