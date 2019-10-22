@@ -4,7 +4,7 @@ import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Printer, PrintOptions } from '@ionic-native/printer';
 import * as jsPDF from 'jspdf';
-import * as html2canvas from 'html2canvas';
+import html2canvas from 'html2canvas';
 import { File } from '@ionic-native/file';
 
 import { HomePage } from '../home/home';

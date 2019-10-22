@@ -21,7 +21,6 @@ export class PhotoboothPage {
 
   public namePhoto: string;
 
-
   public items : Array<any> = [];
 
   public fields : Array<any> = [];
@@ -89,7 +88,8 @@ export class PhotoboothPage {
       encodingType: this.camera.EncodingType.JPEG,
       mediaType: this.camera.MediaType.PICTURE,
       targetWidth:700,
-      targetHeight:1000
+      targetHeight:1000,
+      correctOrientation: true
     }
 
     this.camera.getPicture(options).then((imageData) => {
@@ -189,7 +189,7 @@ export class PhotoboothPage {
     this.barcodeScanner.scan().then(barcodeData => {
       if(barcodeData.cancelled == false){
         this.scannedCode = barcodeData.text;
-        var tel  = this.scannedCode.substring(0, this.scannedCode.length - 1);
+        var tel  = this.scannedCode.substring(0, this.scannedCode.length - localStorage.getItem("idEvent").length);
         tel = tel.replace('https://qrcode.tag.by/vcard?tag=', '');
         console.log('here 1');
         this.selectEntryByQR(tel);
@@ -256,7 +256,7 @@ export class PhotoboothPage {
     var id_event = localStorage.getItem("idEvent");
 
     let headers 	: any		= new HttpHeaders({ 'Content-Type': 'application/json','Access-Control-Allow-Origin': '*', 'Access-Control-Allow-Methods': 'GET, PUT, POST, DELETE, OPTIONS'}),
-    options 	: any		= {"key" : "photoBoothCreate", "prenom" : prenom, "nom" : nom, "telephone" : telephone, "email" : theEmail, "nameImg" : nameImg, "idEvent" : id_event},
+    options 	: any		= {"key" : "photoBoothCreateByQr", "prenom" : prenom, "nom" : nom, "telephone" : telephone, "email" : theEmail, "nameImg" : nameImg, "idEvent" : id_event},
     url       : any      	= this.baseURI + "manage-data";
 
 
