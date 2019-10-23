@@ -189,7 +189,7 @@ export class PhotoboothPage {
     this.barcodeScanner.scan().then(barcodeData => {
       if(barcodeData.cancelled == false){
         this.scannedCode = barcodeData.text;
-        var tel  = this.scannedCode.substring(0, this.scannedCode.length - localStorage.getItem("idEvent").length);
+        var tel  = this.scannedCode.substring(0, this.scannedCode.length - 1);
         tel = tel.replace('https://qrcode.tag.by/vcard?tag=', '');
         console.log('here 1');
         this.selectEntryByQR(tel);
