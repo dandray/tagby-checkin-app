@@ -45,7 +45,7 @@
     "@types/html2canvas": "0.0.35",
     "@types/jspdf": "^1.2.2",
     "cli-update": "^3.2.6",
-    "cordova-android": "^8.0.0",
+    "cordova-android": "8.1.0",
     "cordova-android-support-gradle-release": "^3.0.0",
     "cordova-brother-label-printer": "git+https://github.com/gordol/cordova-brother-label-printer.git",
     "cordova-browser": "5.0.4",
