@@ -48,7 +48,7 @@
     "cordova-android": "8.1.0",
     "cordova-android-support-gradle-release": "^3.0.0",
     "cordova-brother-label-printer": "git+https://github.com/gordol/cordova-brother-label-printer.git",
-    "cordova-browser": "5.0.4",
+    "cordova-browser": "6.0.0",
     "cordova-ios": "^4.5.5",
     "cordova-plugin-add-swift-support": "1.7.2",
     "cordova-plugin-advanced-http": "2.0.2",
